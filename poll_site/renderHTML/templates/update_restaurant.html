@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Restaurant</title>
+</head>
+<body>
+<form method="post">
+    {% csrf_token %}
+    <ul>
+    <li>Restaurant_name:<input type="text" name="restaurant_name" value="{{ restaurants.name }}" placeholder="enter restaurant name">
+    <li>Street:<input type="text" name="street" value="{{ restaurants.street }}" placeholder="enter street">
+    <li>Number:<input type="text" name="number" value="{{ restaurants.number }}" placeholder="enter number">
+    <li>City:<input type="text" name="city" value="{{ restaurants.city }}" placeholder="enter city">
+    <li>Zipcode:<input type="text" name="zipcode" value="{{ restaurants.zipcode }}" placeholder="enter zipcode">
+    <li>State:<input type="text" name="state" value="{{ restaurants.stateorProvince }}" placeholder="enter state/province">
+    <li>Country:<input type="text" name="country" value="{{ restaurants.country }}" placeholder="enter country">
+    <li>Telephone Number:<input type="text" name="telephone" value="{{ restaurants.telephone }}" placeholder="enter telephone number">
+    <li><input type="submit" name="restaurant_submit", value="Update Restaurant">
+    </ul>
+</form>
+</body>
+</html>

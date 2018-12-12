@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dishes</title>
+    <style>
+        ul {
+  list-style-type: none;
+}
+    </style>
+</head>
+<body>
+<ul>
+    <header>List Of Dishes</header>
+{% for dish in dishes %}
+    <li><label><a href="{% url 'dish' dish.id %}">Name:{{ dish.name }}</a></label></li>
+    <li><label>Description:{{ dish.description }}</label></li>
+    <li><label>Price:{{ dish.price }}</label></li>
+    <li><label>Image: <img src="{{ dish.image.url }}" height="200" width="200"></label></li>
+    <li><a href="{% url 'delete_dish' restaurant_id dish.id %}">Delete Dish</a></li>
+    <li><a href="{% url 'update_dish' restaurant_id dish.id %}">Update Dish</a></li>
+    <br><br>
+{% endfor %}
+</ul>
+<header>Add Dish</header>
+<form method="post" enctype="multipart/form-data">
+     {% csrf_token %}
+    <ul>
+    <li><label>Name:<input type="text" name="dish_name" placeholder="enter dish name">
+    <li><label>Description:<input type="text" name="description" placeholder="enter description">
+    <li><label>Price:<input type="text" name="price" placeholder="enter price">
+    <li><label>Image:<input type="file" name="pic" accept="image/*"><input type="image">
+    <li><input type="submit" name="dish_submit">
+    </ul>
+</form>
+
+</body>
+</html>

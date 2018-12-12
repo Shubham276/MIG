@@ -1,0 +1,28 @@
+{% extends 'header.html' %}
+<!--# pil-->
+{% block content %}
+<table class="table tale-striped table-bordered table-sm">
+    <thead class="thead-dark">
+    <tr>
+        <th>Employee Id</th>
+        <th>Employee Name</th>
+        <th>Employee Email</th>
+        <th>Employee Contact</th>
+        <th>Employee Image</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for employee in employees %}
+    <tr>
+    <td>{{ employee.eid }}</td>
+    <td>{{ employee.ename }}</td>
+    <td>{{ employee.eemail }}</td>
+    <td>{{ employee.econtact }}</td>
+    <td><img src="{{ employee.eimage.url }}" height="200" width="200"></td>
+    <td><a href="{% url 'delete' employee.id %}" class="btn btn-danger">Delete</a></td>
+    <td><a href="{% url 'update' employee.id %}" class="btn btn-primary">Update</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

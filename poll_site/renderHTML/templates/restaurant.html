@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% extends 'header.html' %}
+<html lang="en">
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurants</title>
+    <style>
+        ul {
+            list-style-type: none;
+            }
+    </style>
+</head>
+<body>
+<header><b>List Of Restaurant</b></header>
+<ul>
+{% for r in restaurants %}
+    <li><a href="{% url 'dish' r.id %}">Name :{{r.name}}</a></li>
+    <li>Street :{{r.street}}</li>
+    <li>Number :{{r.number}}</li>
+    <li>City :{{r.city}}</li>
+    <li>Zipcode :{{r.zipcode}}</li>
+    <li>StateorProvince :{{r.stateorProvince}}</li>
+    <li>Country :{{r.country}}</li>
+    <li>Telephone :{{r.telephone}}</li>
+    <li><a href="{% url 'delete_restaurant' r.id %}">Delete Restaurant</a> <a href="{% url 'update_restaurant' r.id %}">Update Restaurant</a></li>
+    <br><br>
+{% endfor %}
+</ul>
+<hr>
+<header><b>Add Restaurants</b></header>
+<form method="post" name="">
+    {% csrf_token %}
+    <ul>
+    <li>Restaurant_name:<input type="text" name="restaurant_name" placeholder="enter restaurant name">
+    <li>Street:<input type="text" name="street" placeholder="enter street">
+    <li>Number:<input type="text" name="number" placeholder="enter number">
+    <li>City:<input type="text" name="city" placeholder="enter city">
+    <li>Zipcode:<input type="text" name="zipcode" placeholder="enter zipcode">
+    <li>State:<input type="text" name="state" placeholder="enter state/province">
+    <li>Country:<input type="text" name="country" placeholder="enter country">
+    <li>Telephone Number:<input type="text" name="telephone" placeholder="enter telephone number">
+    <li><input type="submit" name="restaurant_submit" value="Add Restaurant">
+    </ul>
+</form>
+<br><br>
+<h1>Name Form</h1>
+</form method="post">
+    {% csrf_token %}
+    {{ name_form.as_p }}
+    <input type="submit">
+</form>
+<h1>Employee Form</h1>
+<form method="post" action="{% url 'add' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ emp_form.as_p }}
+    <input type="submit">
+</form>
+</body>
+{% endblock %}
+</html>

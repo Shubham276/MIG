@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Dish</title>
+</head>
+<body>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <ul>
+        {{ dishes.image }}
+    <li><label>Dish Name:<input type="text" name="dish_name" value="{{ dishes.name }}" placeholder="enter dish name">
+    <li><label>Description:<input type="text" name="description" value="{{ dishes.description }}" placeholder="enter description">
+    <li><label>Price:<input type="text" name="price" value="{{ dishes.price }}" placeholder="enter price">
+    <li><label>Image:<input type="file" name="pic" val="" accept="image/*"><input type="image">
+    <li><label>Image:<img src="{{ dishes.image.url }}" height="200" width="200" >
+    <li><input type="submit" name="dish_submit", value="Update Dish">
+    </ul>
+</form>
+</body>
+</html>

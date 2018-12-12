@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Restaurant</a>
+            {% if user.is_authenticated %}
+      <li class="active"><a href="#">Welcome {{ user }}</a></li>
+            {% endif %}
+    </div>
+    <form method="post">
+       {% csrf_token %}
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><input type="text" id="search" name="search" placeholder="Enter name to be searched"></li>
+      <li><input type="submit" value="Search" class="btn btn-primary btn-submit"></li>
+      {% if user.is_authenticated %}
+      <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+      {% else %}
+      <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+      <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+      {% endif %}
+    </ul>
+      <ul id="search-results"></ul>
+    </form>
+  </div>
+</nav>
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-{{message.tags}}">
+      <strong>{{message.tags}}</strong>{{message}}
+    </div>
+  {% endfor %}
+{% endif %}
+{% block content %}
+{% endblock %}
+<script>
+  $(function() {
+
+    $('#search').keyup(function() {
+      $.ajax({
+          type:'POST',
+          url:'search/',
+          data:{
+            'search_text': $('#search').val(),
+            'csrfmiddlewaretoken': $("input[name=csrfmiddlewaretoken]").val()
+            },
+            success: searchSuccess,
+            dataType:'html'
+            });
+          });
+        });
+
+    function searchSuccess(data, textStatus, jqXHR)
+      {
+        $('#search-results').html(data);
+      }
+
+</script>
+</body>
+</html>
