@@ -1,8 +1,7 @@
-<ul>
+    {% if employees.count > 0 %}
 {% for employee in employees %}
-    <li>employee.ename</li>
+    <li style="background-color:#ff0000">{{ employee.ename }}</li>
 {% endfor %}
 {% else %}
     <li>No Results</li>
 {% endif %}
-</ul>
