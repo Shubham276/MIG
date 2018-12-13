@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 {% extends 'header.html' %}
 <html lang="en">
-
 {% block content %}
 <head>
     <meta charset="UTF-8">
@@ -51,12 +50,12 @@
     {{ name_form.as_p }}
     <input type="submit">
 </form>
-<h1>Employee Form</h1>
-<form method="post" action="{% url 'add' %}" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ emp_form.as_p }}
-    <input type="submit">
-</form>
+<!--<h1>Employee Form</h1>-->
+<!--<form method="post" action="{% url 'add' %}" enctype="multipart/form-data">-->
+    <!--{% csrf_token %}-->
+    <!--{{ emp_form.as_p }}-->
+    <!--<input type="submit">-->
+<!--</form>-->
 </body>
 {% endblock %}
 </html>
