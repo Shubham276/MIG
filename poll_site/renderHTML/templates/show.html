@@ -25,4 +25,26 @@
     {% endfor %}
     </tbody>
 </table>
+        <!--{{ employees.paginator.page_range }}-->
+<center>
+    <div>
+        <span>
+            {% if employees.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ employees.previous_page_number }}">&laquo; previous</a>
+            {% endif %}
+
+            <span>
+                <strong>
+                    Page {{ employees.number }} of
+                    {{ employees.paginator.num_pages }}
+                </strong>
+            </span>
+            {% if employees.has_next %}
+            <a href="?page={{ employees.next_page_number }}">&raquo; next</a>
+            <a href="?page={{ employees.paginator.num_pages }}">&raquo;last</a>
+            {% endif %}
+        </span>
+    </div>
+</center>
 {% endblock %}
