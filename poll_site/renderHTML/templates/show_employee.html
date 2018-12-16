@@ -1,0 +1,18 @@
+{% extends 'header.html' %}
+{% block content %}
+<table class="table tale-striped table-bordered table-sm">
+    <thead class="thead-dark">
+    <tr>
+        <th>Employee ID</th>
+        <th>Employee Name</th>
+        <th>Employee Email</th>
+        <th>Employee Contact</th>
+        <th>Employee Image</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    {% for emp in object_list %}
+        {{ emp.name | upper }} <!-- given by django '|' known as filter operator-->
+    {% endfor %}
+</table>
+{% endblock %}
